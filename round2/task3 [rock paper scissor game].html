@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #choices img {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <div id="choices">
+            <img src="rock.png" alt="Rock" onclick="play('rock')" />
+            <img src="paper.png" alt="Paper" onclick="play('paper')" />
+            <img src="scissor.png" alt="Scissors" onclick="play('scissors')" />
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function play(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            const result = getResult(playerChoice, computerChoice);
+
+            document.getElementById('result').innerHTML = `You chose ${playerChoice}. Computer chose ${computerChoice}.<br>${result}`;
+        }
+
+        function getResult(player, computer) {
+            if (player === computer) {
+                return "It's a tie!";
+            } else if ((player === 'rock' && computer === 'scissors') || (player === 'paper' && computer === 'rock') || (player === 'scissors' && computer === 'paper')) {
+                return 'You win!';
+            } else {
+                return 'Computer wins!';
+            }
+        }
+    </script>
+</body>
+</html>
